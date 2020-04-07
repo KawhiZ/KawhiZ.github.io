@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kawhiz.github.io/"/>
-  <updated>2020-04-06T09:47:36.931Z</updated>
+  <updated>2020-04-07T02:45:33.658Z</updated>
   <id>https://kawhiz.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>重装系统后的hexo恢复</title>
+    <link href="https://kawhiz.github.io/2020/04/07/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E7%9A%84hexo%E6%81%A2%E5%A4%8D/"/>
+    <id>https://kawhiz.github.io/2020/04/07/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E7%9A%84hexo%E6%81%A2%E5%A4%8D/</id>
+    <published>2020-04-07T02:18:44.000Z</published>
+    <updated>2020-04-07T02:45:33.658Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p><strong>win10重装系统后hexo博客如何恢复？</strong></p><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h2 id="重装nodejs、git"><a href="#重装nodejs、git" class="headerlink" title="重装nodejs、git"></a>重装nodejs、git</h2><p>node：<a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">https://nodejs.org/zh-cn/</a><br>git：<a href="https://npm.taobao.org/mirrors/git-for-windows/" target="_blank" rel="noopener">https://npm.taobao.org/mirrors/git-for-windows/</a></p><h2 id="重装hexo-cli"><a href="#重装hexo-cli" class="headerlink" title="重装hexo-cli"></a>重装hexo-cli</h2><p>**<br><code>npm install hexo-cli -g</code></p><h2 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h2><p><img src="/2020/04/07/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E7%9A%84hexo%E6%81%A2%E5%A4%8D/20200407103533188.png" alt></p><h2 id="保留删除文件"><a href="#保留删除文件" class="headerlink" title="保留删除文件"></a>保留删除文件</h2><p><img src="/2020/04/07/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E7%9A%84hexo%E6%81%A2%E5%A4%8D/20200407103959930.png" alt></p><h2 id="查看是否安装成功"><a href="#查看是否安装成功" class="headerlink" title="查看是否安装成功"></a>查看是否安装成功</h2><p><img src="/2020/04/07/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E7%9A%84hexo%E6%81%A2%E5%A4%8D/20200407104150066.png" alt></p><h2 id="安装部署依赖"><a href="#安装部署依赖" class="headerlink" title="安装部署依赖"></a>安装部署依赖</h2><p><code>npm install hexo-deployer-git --save</code></p><h2 id="最终测试"><a href="#最终测试" class="headerlink" title="最终测试"></a>最终测试</h2><p><code>hexo c &amp;&amp; hexo g &amp;&amp; hexo d</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;win10重装系统后hexo博客如何恢复？&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;解决方案&quot;&gt;&lt;a hr
+      
+    
+    </summary>
+    
+    
+    
+      <category term="踩坑" scheme="https://kawhiz.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
+    
+  </entry>
   
   <entry>
     <title>编辑距离</title>
@@ -484,31 +509,6 @@
 &lt;p&gt;输入：words = [“cat”,”bt”,”hat”,”tree”], chars = “atach”&lt;br&gt;输出：6&lt;br&gt;解释：&lt;br&gt;可以形成字符串 “cat” 和 “hat”，所以答案是 3 + 3 = 6。&lt;br&gt;示例 2：&lt;/p&gt;
 &lt;p&gt;输入：words = [“hello”,”world”,”leetcode”], chars = “welldonehoneyr”&lt;br&gt;输出：10&lt;br&gt;解释：&lt;br&gt;可以形成字符串 “hello” 和 “world”，所以答案是 5 + 5 = 10。&lt;/p&gt;
 &lt;p&gt;提示：&lt;br&gt;1 &amp;lt;= words.length &amp;lt;= 1000&lt;br&gt;1 &amp;lt;= words[i].length, chars.length &amp;lt;= 100&lt;br&gt;所有字符串中都仅包含小写英文字母&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="每日一题" scheme="https://kawhiz.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>字符串压缩</title>
-    <link href="https://kawhiz.github.io/2020/03/16/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9/"/>
-    <id>https://kawhiz.github.io/2020/03/16/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9/</id>
-    <published>2020-03-16T13:48:18.000Z</published>
-    <updated>2020-03-17T08:49:40.770Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>【来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/compress-string-lcci" target="_blank" rel="noopener">https://leetcode-cn.com/problems/compress-string-lcci</a> 】<br>字符串压缩。利用字符重复出现的次数，编写一种方法，实现基本的字符串压缩功能。比如，字符串aabcccccaaa会变为a2b1c5a3。若“压缩”后的字符串没有变短，则返回原先的字符串。你可以假设字符串中只包含大小写英文字母（a至z）。</p><p>示例1:</p><p> 输入：”aabcccccaaa”<br> 输出：”a2b1c5a3”<br>示例2:</p><p> 输入：”abbccd”<br> 输出：”abbccd”<br> 解释：”abbccd”压缩后为”a1b2c2d1”，比原字符串长度更长。<br>提示：</p><p>字符串长度在[0, 50000]范围内。</p><a id="more"></a><h1 id="两种思路"><a href="#两种思路" class="headerlink" title="两种思路"></a>两种思路</h1><p><em>直接将字符串转化为字符数组然后通过一个StringBuilder(多线程不安全)或者StringBuffer(多线程安全)接受结果</em><br><em>最后比较压缩后的长度和原先的大小，压缩变短则返回压缩后的否则返回原来的字符串</em></p><h1 id="两种解决方案"><a href="#两种解决方案" class="headerlink" title="两种解决方案"></a>两种解决方案</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String compressString(String S) &#123;</span><br><span class="line">        &#x2F;&#x2F; 转化为字符数组</span><br><span class="line">        char[] c &#x3D; S.toCharArray();</span><br><span class="line">        &#x2F;&#x2F; 存储压缩结果</span><br><span class="line">        StringBuilder sb &#x3D; new StringBuilder();</span><br><span class="line">        int count &#x3D; 1;</span><br><span class="line">        &#x2F;&#x2F; 临时变量作比较</span><br><span class="line">        Character tempChar &#x3D; c[0];</span><br><span class="line">        sb.append(tempChar);</span><br><span class="line">        &#x2F;&#x2F; 遍历</span><br><span class="line">        for (int i &#x3D; 1; i &lt; c.length; i++) &#123;</span><br><span class="line">            &#x2F;&#x2F; 如果和首字符相等，则计数加一</span><br><span class="line">            if (tempChar.equals(c[i])) &#123;</span><br><span class="line">                count ++;</span><br><span class="line">                &#x2F;&#x2F; 否则替换临时变量，同时结算上一个字符次数，计数器重置</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                tempChar &#x3D; c[i];</span><br><span class="line">                sb.append(count);</span><br><span class="line">                sb.append(tempChar);</span><br><span class="line">                count &#x3D; 1;</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F; 这里需要特别对最后一个进行单独判断，否则结果缺少最后一个字符的数目</span><br><span class="line">            if(i &#x3D;&#x3D; c.length - 1)&#123;</span><br><span class="line">                sb.append(count);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; 压缩完比原来的短则返回压缩字符串,否则返回原来字符串</span><br><span class="line">        return sb.toString().length() &lt; S.length() ? sb.toString() : S;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><img src="/2020/03/16/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9/20200316095918463.png" alt></p><p><img src="/2020/03/16/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9/20200316095950019.png" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;【来源：力扣（LeetCode）&lt;br&gt;链接：&lt;a href=&quot;https://leetcode-cn.com/problems/compress-string-lcci&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode-cn.com/problems/compress-string-lcci&lt;/a&gt; 】&lt;br&gt;字符串压缩。利用字符重复出现的次数，编写一种方法，实现基本的字符串压缩功能。比如，字符串aabcccccaaa会变为a2b1c5a3。若“压缩”后的字符串没有变短，则返回原先的字符串。你可以假设字符串中只包含大小写英文字母（a至z）。&lt;/p&gt;
-&lt;p&gt;示例1:&lt;/p&gt;
-&lt;p&gt; 输入：”aabcccccaaa”&lt;br&gt; 输出：”a2b1c5a3”&lt;br&gt;示例2:&lt;/p&gt;
-&lt;p&gt; 输入：”abbccd”&lt;br&gt; 输出：”abbccd”&lt;br&gt; 解释：”abbccd”压缩后为”a1b2c2d1”，比原字符串长度更长。&lt;br&gt;提示：&lt;/p&gt;
-&lt;p&gt;字符串长度在[0, 50000]范围内。&lt;/p&gt;
     
     </summary>
     
