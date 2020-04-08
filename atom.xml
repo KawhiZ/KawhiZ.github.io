@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kawhiz.github.io/"/>
-  <updated>2020-04-07T05:17:59.503Z</updated>
+  <updated>2020-04-08T05:37:02.761Z</updated>
   <id>https://kawhiz.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>机器人的运动范围</title>
+    <link href="https://kawhiz.github.io/2020/04/08/%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/"/>
+    <id>https://kawhiz.github.io/2020/04/08/%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/</id>
+    <published>2020-04-08T05:24:50.000Z</published>
+    <updated>2020-04-08T05:37:02.761Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>【来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof</a> 】<br>地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？</p><p>示例 1：<br>输入：m = 2, n = 3, k = 1<br>输出：3</p><p>示例 2：</p><p>输入：m = 3, n = 1, k = 0<br>输出：1<br>提示：</p><p>1 &lt;= n,m &lt;= 100<br>0 &lt;= k &lt;= 20</p><a id="more"></a><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p><strong>bfs搜索的常规思想<br>设置方向数组来进行新下标计算，注意越界问题<br>注意这里下标范围是百位数以内的，直接求数位和判断下标是否可达，设置数组记录结点是否访问，未访问可达则入队</strong></p><h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">import java.util.LinkedList;</span><br><span class="line">class Solution &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 队列存放访问结点的横纵坐标</span><br><span class="line">     *&#x2F;</span><br><span class="line">    LinkedList&lt;int[]&gt; queue;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 存放横坐标变化常量</span><br><span class="line">     *&#x2F;</span><br><span class="line">    final int[] dx &#x3D; &#123;0, 0, -1, 1&#125;;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 存放纵坐标变化常量</span><br><span class="line">     *&#x2F;</span><br><span class="line">    final int[] dy &#x3D; &#123;1, -1, 0, 0&#125;;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 记录结点是否访问过</span><br><span class="line">     *&#x2F;</span><br><span class="line">    boolean[][] used;</span><br><span class="line"></span><br><span class="line">    public int movingCount(int m, int n, int k) &#123;</span><br><span class="line">        &#x2F;&#x2F; 可达格子数</span><br><span class="line">        int count &#x3D; 0;</span><br><span class="line"></span><br><span class="line">        used &#x3D; new boolean[m][n];</span><br><span class="line">        queue &#x3D; new LinkedList&lt;int[]&gt;();</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 先判断(0, 0)是否满足数位和不大于k</span><br><span class="line">        if (k &gt;&#x3D; 0) &#123;</span><br><span class="line">            queue.offer(new int[]&#123;0, 0&#125;);</span><br><span class="line">            used[0][0] &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line">        while (!queue.isEmpty()) &#123;</span><br><span class="line">            &#x2F;&#x2F; 当前结点</span><br><span class="line">            int[] curNode &#x3D; queue.poll();</span><br><span class="line">            &#x2F;&#x2F; 横坐标</span><br><span class="line">            int x &#x3D; curNode[0];</span><br><span class="line">            &#x2F;&#x2F; 纵坐标</span><br><span class="line">            int y &#x3D; curNode[1];</span><br><span class="line">            boolean flag &#x3D; (sum(x) + sum(y) &lt;&#x3D; k);</span><br><span class="line">            &#x2F;&#x2F; 如果当前结点数位和不大于k代表可达</span><br><span class="line">            if (flag) &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F; 四个方向的横纵坐标变化</span><br><span class="line">            for (int i &#x3D; 0; i &lt; dx.length; i++) &#123;</span><br><span class="line">                &#x2F;&#x2F; 当前结点移动一次后新横坐标</span><br><span class="line">                int tx &#x3D; x + dx[i];</span><br><span class="line">                &#x2F;&#x2F; 当前结点移动一次后新纵坐标</span><br><span class="line">                int ty &#x3D; y + dy[i];</span><br><span class="line">                &#x2F;&#x2F; 判断是否越界</span><br><span class="line">                if (tx &lt; m &amp;&amp; ty &lt; n &amp;&amp; tx &gt;&#x3D; 0 &amp;&amp; ty &gt;&#x3D; 0) &#123;</span><br><span class="line">                    &#x2F;&#x2F; 未访问且可达将结点入队，设置已访问</span><br><span class="line">                    if (!used[tx][ty] &amp;&amp; flag) &#123;</span><br><span class="line">                        queue.offer(new int[]&#123;tx, ty&#125;);</span><br><span class="line">                        used[tx][ty] &#x3D; true;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 求数位和</span><br><span class="line">     *</span><br><span class="line">     * @param x</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public int sum(int x) &#123;</span><br><span class="line">        int sumX &#x3D; 0;</span><br><span class="line">        sumX +&#x3D; (x % 10);</span><br><span class="line">        x -&#x3D; sumX;</span><br><span class="line">        if ((x &#x2F; 10) !&#x3D; 10) &#123;</span><br><span class="line">            sumX +&#x3D; (x &#x2F; 10);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            sumX++;</span><br><span class="line">        &#125;</span><br><span class="line">        return sumX;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><img src="/2020/04/08/%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/20200408012826997.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;【来源：力扣（LeetCode）&lt;br&gt;链接：&lt;a href=&quot;https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof&lt;/a&gt; 】&lt;br&gt;地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？&lt;/p&gt;
+&lt;p&gt;示例 1：&lt;br&gt;输入：m = 2, n = 3, k = 1&lt;br&gt;输出：3&lt;/p&gt;
+&lt;p&gt;示例 2：&lt;/p&gt;
+&lt;p&gt;输入：m = 3, n = 1, k = 0&lt;br&gt;输出：1&lt;br&gt;提示：&lt;/p&gt;
+&lt;p&gt;1 &amp;lt;= n,m &amp;lt;= 100&lt;br&gt;0 &amp;lt;= k &amp;lt;= 20&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="每日一题" scheme="https://kawhiz.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>旋转矩阵</title>
@@ -475,32 +500,6 @@
 &lt;p&gt;输入:&lt;br&gt;“abccccdd”&lt;/p&gt;
 &lt;p&gt;输出:&lt;br&gt;7&lt;/p&gt;
 &lt;p&gt;解释:&lt;br&gt;我们可以构造的最长的回文串是”dccaccd”, 它的长度是 7。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="每日一题" scheme="https://kawhiz.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>矩阵重叠</title>
-    <link href="https://kawhiz.github.io/2020/03/18/%E7%9F%A9%E9%98%B5%E9%87%8D%E5%8F%A0/"/>
-    <id>https://kawhiz.github.io/2020/03/18/%E7%9F%A9%E9%98%B5%E9%87%8D%E5%8F%A0/</id>
-    <published>2020-03-18T05:11:17.000Z</published>
-    <updated>2020-03-18T05:36:26.274Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>【来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/rectangle-overlap/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/rectangle-overlap/</a> 】<br>矩形以列表 [x1, y1, x2, y2] 的形式表示，其中 (x1, y1) 为左下角的坐标，(x2, y2) 是右上角的坐标。<br>如果相交的面积为正，则称两矩形重叠。需要明确的是，只在角或边接触的两个矩形不构成重叠。<br>给出两个矩形，判断它们是否重叠并返回结果。</p><p>示例 1：</p><p>输入：rec1 = [0,0,2,2], rec2 = [1,1,3,3]<br>输出：true</p><p>示例 2：</p><p>输入：rec1 = [0,0,1,1], rec2 = [1,0,2,1]<br>输出：false</p><p>提示：<br>两个矩形 rec1 和 rec2 都以含有四个整数的列表的形式给出。<br>矩形中的所有坐标都处于 -10^9 和 10^9 之间。<br>x 轴默认指向右，y 轴默认指向上。<br>你可以仅考虑矩形是正放的情况。</p><a id="more"></a><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p><strong>一开始在考虑二维矩阵重叠时发现有很多种情况，而且判断的条件都非常容易混淆<br>后来重新考虑可能不重叠的情况条件比较容易判断，有上下左右四个方向的情况</strong><br><strong><em>问题的关键在于将左右等同到x轴的投影、上下成到y轴的投影，然后分别判断一维线段的临界值即可，想清楚问题后编码不难实现，如图</em></strong><br><img src="/2020/03/18/%E7%9F%A9%E9%98%B5%E9%87%8D%E5%8F%A0/20200318012650103.png" alt></p><h1 id="一种解决方案"><a href="#一种解决方案" class="headerlink" title="一种解决方案"></a>一种解决方案</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isRectangleOverlap(int[] rec1, int[] rec2) &#123;</span><br><span class="line">        &#x2F;&#x2F; 分别判断上下左右四种不重叠的情况，题目有提及只有边、角接触也不算重叠，所以注意相等</span><br><span class="line">        if( (rec1[0] &gt;&#x3D; rec2[2]) || (rec1[2] &lt;&#x3D; rec2[0]) || (rec1[3] &lt;&#x3D; rec2[1]) || (rec1[1] &gt;&#x3D; rec2[3]) ) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><img src="/2020/03/18/%E7%9F%A9%E9%98%B5%E9%87%8D%E5%8F%A0/20200318012332480.png" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;【来源：力扣（LeetCode）&lt;br&gt;链接：&lt;a href=&quot;https://leetcode-cn.com/problems/rectangle-overlap/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode-cn.com/problems/rectangle-overlap/&lt;/a&gt; 】&lt;br&gt;矩形以列表 [x1, y1, x2, y2] 的形式表示，其中 (x1, y1) 为左下角的坐标，(x2, y2) 是右上角的坐标。&lt;br&gt;如果相交的面积为正，则称两矩形重叠。需要明确的是，只在角或边接触的两个矩形不构成重叠。&lt;br&gt;给出两个矩形，判断它们是否重叠并返回结果。&lt;/p&gt;
-&lt;p&gt;示例 1：&lt;/p&gt;
-&lt;p&gt;输入：rec1 = [0,0,2,2], rec2 = [1,1,3,3]&lt;br&gt;输出：true&lt;/p&gt;
-&lt;p&gt;示例 2：&lt;/p&gt;
-&lt;p&gt;输入：rec1 = [0,0,1,1], rec2 = [1,0,2,1]&lt;br&gt;输出：false&lt;/p&gt;
-&lt;p&gt;提示：&lt;br&gt;两个矩形 rec1 和 rec2 都以含有四个整数的列表的形式给出。&lt;br&gt;矩形中的所有坐标都处于 -10^9 和 10^9 之间。&lt;br&gt;x 轴默认指向右，y 轴默认指向上。&lt;br&gt;你可以仅考虑矩形是正放的情况。&lt;/p&gt;
     
     </summary>
     
