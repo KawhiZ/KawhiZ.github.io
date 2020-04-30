@@ -187,6 +187,112 @@
             
 
   
+    <article id="post-SpringBoot-SSM中时间格式以及vue-ElementUI中的小问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2019/12/05/SpringBoot-SSM%E4%B8%AD%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E4%BB%A5%E5%8F%8Avue-ElementUI%E4%B8%AD%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/" target="_blank">SpringBoot+SSM中时间格式以及Vue+ElementUI中的小问题</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/12/05/SpringBoot-SSM%E4%B8%AD%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E4%BB%A5%E5%8F%8Avue-ElementUI%E4%B8%AD%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/" class="archive-article-date">
+        <time datetime="2019-12-05T13:50:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-05</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="SpringBoot和SSM中时间的小问题"><a href="#SpringBoot和SSM中时间的小问题" class="headerlink" title="SpringBoot和SSM中时间的小问题"></a>SpringBoot和SSM中时间的小问题</h1><h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><ul>
+<li>1.后台传到前台的时间数据是NAN-NAN-NAN NAN:NAN:NAN</li>
+<li>2.各种String、Date类型错误比如”2018-05-19T08:04:52.000+0000”类型的时间无法直接存入Date等等</li>
+<li>3.MySQL时区问题（差北京时间8小时问题）</li>
+<li><em>解决：1.在实体类pojo时间字段加上格式化注解，使用util.Date*</em></li>
+<li><em>2.索性后台使用String接受一个StringDate 然后再用格式化处理形如以上提及的类型再存入另一个Date的realDate*</em></li>
+<li><em>3.application.properties中配置spring.jackson.time-zone=GMT+8*</em></li></ul>
+    
+    <a class="article-more-a" href="/2019/12/05/SpringBoot-SSM%E4%B8%AD%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E4%BB%A5%E5%8F%8Avue-ElementUI%E4%B8%AD%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vue</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ElementUI</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2019/12/05/SpringBoot-SSM%E4%B8%AD%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E4%BB%A5%E5%8F%8Avue-ElementUI%E4%B8%AD%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Springboot-SSM动态sql拼接以及注解遇到的一点小问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
