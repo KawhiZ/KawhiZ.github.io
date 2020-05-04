@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kawhiz.github.io/"/>
-  <updated>2020-05-03T07:15:53.063Z</updated>
+  <updated>2020-05-04T02:33:41.927Z</updated>
   <id>https://kawhiz.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>跳跃游戏II</title>
+    <link href="https://kawhiz.github.io/2020/05/04/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/"/>
+    <id>https://kawhiz.github.io/2020/05/04/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/</id>
+    <published>2020-05-04T02:17:53.000Z</published>
+    <updated>2020-05-04T02:33:41.927Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>【来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/jump-game-ii" target="_blank" rel="noopener">https://leetcode-cn.com/problems/jump-game-ii</a> 】</p><p>给定一个非负整数数组，你最初位于数组的第一个位置。<br>数组中的每个元素代表你在该位置可以跳跃的最大长度。<br>你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p><p>示例:<br>输入: [2,3,1,1,4]<br>输出: 2<br>解释: 跳到最后一个位置的最小跳跃数是 2。<br>     从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。<br>说明:<br>假设你总是可以到达数组的最后一个位置。</p><a id="more"></a><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p><strong>从目的地最后的位置来看，倒数前一次跳跃每次如果每次能找到一个离起点更近的位置则可以节省步数，最后找到起始位置即可，几个关键问题<br>（1）注意在找到一个位置后更新跳跃倒数前一个位置以及跳出循环<br>（2）外层循环是到起始位置则结束</strong></p><h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">int n &#x3D; nums.length;</span><br><span class="line">        if (n &#x3D;&#x3D; 0 || n &#x3D;&#x3D; 1) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; 最少跳跃步数</span><br><span class="line">        int res &#x3D; 0;</span><br><span class="line">        &#x2F;&#x2F; 初始为最后的位置</span><br><span class="line">        int pos &#x3D; n - 1;</span><br><span class="line">        &#x2F;&#x2F; 找到初始位置则结束</span><br><span class="line">        while (pos &gt; 0) &#123;</span><br><span class="line">            &#x2F;&#x2F; 从左往右贪心地选择离最后位置最远的地方</span><br><span class="line">            for (int i &#x3D; 0; i &lt; pos; i++) &#123;</span><br><span class="line">                &#x2F;&#x2F; 如果可达</span><br><span class="line">                if (i + nums[i] &gt;&#x3D; pos) &#123;</span><br><span class="line">                    res++;</span><br><span class="line">                    &#x2F;&#x2F; 更新跳跃倒数前一个位置</span><br><span class="line">                    pos &#x3D; i;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br></pre></td></tr></table></figure><p><img src="/2020/05/04/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/20200504102947332.png" alt></p><h1 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h1><p><strong>从起始位置来看，每次选择能跳跃的更远的位置来考虑下一步跳跃则可以节省步数，最后到达目的地即可，有几个关键<br>（1）如何实现？这种思路起始很容易想到，但是实际还是不容易想到设置一个边界来实现，每次到达边界则更新边界<br>（2）最后的位置不需要遍历，必定能到达最后的位置不用再跳</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public int jump(int[] nums) &#123;</span><br><span class="line">        int n &#x3D; nums.length;</span><br><span class="line">        if(n &#x3D;&#x3D; 0 || n &#x3D;&#x3D; 1) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; 最少跳跃步数</span><br><span class="line">        int res &#x3D; 0;</span><br><span class="line">        &#x2F;&#x2F; 当前最远跳跃位置</span><br><span class="line">        int curMax &#x3D; 0;</span><br><span class="line">        &#x2F;&#x2F; 边界</span><br><span class="line">        int end &#x3D; 0;</span><br><span class="line">        &#x2F;&#x2F; 注意不需要遍历到最后一个元素</span><br><span class="line">        for(int cur &#x3D; 0; cur &lt; n - 1; cur++) &#123;</span><br><span class="line">            &#x2F;&#x2F; 最大跳跃位置</span><br><span class="line">            curMax &#x3D; Math.max(curMax, cur + nums[cur]);</span><br><span class="line">            &#x2F;&#x2F; 到达边界则更新边界和跳跃步数</span><br><span class="line">            if(cur &#x3D;&#x3D; end) &#123;</span><br><span class="line">                res++;</span><br><span class="line">                end &#x3D; curMax;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p><img src="/2020/05/04/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/20200504102449553.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;【来源：力扣（LeetCode）&lt;br&gt;链接：&lt;a href=&quot;https://leetcode-cn.com/problems/jump-game-ii&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode-cn.com/problems/jump-game-ii&lt;/a&gt; 】&lt;/p&gt;
+&lt;p&gt;给定一个非负整数数组，你最初位于数组的第一个位置。&lt;br&gt;数组中的每个元素代表你在该位置可以跳跃的最大长度。&lt;br&gt;你的目标是使用最少的跳跃次数到达数组的最后一个位置。&lt;/p&gt;
+&lt;p&gt;示例:&lt;br&gt;输入: [2,3,1,1,4]&lt;br&gt;输出: 2&lt;br&gt;解释: 跳到最后一个位置的最小跳跃数是 2。&lt;br&gt;     从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。&lt;br&gt;说明:&lt;br&gt;假设你总是可以到达数组的最后一个位置。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="每日一题" scheme="https://kawhiz.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>最大子序和</title>
@@ -465,31 +488,6 @@
     
     
       <category term="每日一题" scheme="https://kawhiz.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LRU缓存机制</title>
-    <link href="https://kawhiz.github.io/2020/04/05/LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/"/>
-    <id>https://kawhiz.github.io/2020/04/05/LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/</id>
-    <published>2020-04-05T14:41:05.000Z</published>
-    <updated>2020-04-05T14:56:51.971Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>【来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/lru-cache" target="_blank" rel="noopener">https://leetcode-cn.com/problems/lru-cache</a> 】<br>运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。</p><p>获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。<br>写入数据 put(key, value) - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。</p><p>进阶:<br>你是否可以在 O(1) 时间复杂度内完成这两种操作？</p><p>示例:<br>LRUCache cache = new LRUCache( 2 /* 缓存容量 */ );</p><p>cache.put(1, 1);<br>cache.put(2, 2);<br>cache.get(1);       // 返回  1<br>cache.put(3, 3);    // 该操作会使得密钥 2 作废<br>cache.get(2);       // 返回 -1 (未找到)<br>cache.put(4, 4);    // 该操作会使得密钥 1 作废<br>cache.get(1);       // 返回 -1 (未找到)<br>cache.get(3);       // 返回  3<br>cache.get(4);       // 返回  4</p><a id="more"></a><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p><strong>实现LRU的话关键在于如何判断移除哪个键值是最近最少未使用的，直观思路就是设置上次使用的时间戳以及使用次数<br>不过自己代码封装及其丑陋。。。<br>所以还是参考官方使用java已经封装得非常好看的LinkedHashMap，因为底层通过封装哈希表和双向链表保证了有序插入，同时实现了removeEldestEntry方法，这里cache容量满了的话要删除头部结点就是最近最少未使用的结点</strong></p><h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import java.util.LinkedHashMap;</span><br><span class="line">class LRUCache extends LinkedHashMap&lt;Integer, Integer&gt;&#123;</span><br><span class="line">    &#x2F;&#x2F; cache的容量</span><br><span class="line">    private int capacity;</span><br><span class="line">    &#x2F;&#x2F; super(capacity, 0.75F, true)这里三个参数分别是容量、负载因子和模式，默认为插入模式存储，这里设置为访问模式存储</span><br><span class="line">    public LRUCache(int capacity) &#123;</span><br><span class="line">        super(capacity, 0.75F, true);</span><br><span class="line">        this.capacity &#x3D; capacity;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; super.getOrDefault(key, -1)这里如果查不到则返回默认值-1</span><br><span class="line">    public int get(int key) &#123;</span><br><span class="line">        return super.getOrDefault(key, -1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void put(int key, int value) &#123;</span><br><span class="line">        super.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 如果当前大小大于容量则需要移除最近最少使用的结点</span><br><span class="line">    @Override</span><br><span class="line">    protected boolean removeEldestEntry(Map.Entry&lt;Integer, Integer&gt; eldest) &#123;</span><br><span class="line">        return size() &gt; capacity; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Your LRUCache object will be instantiated and called as such:</span><br><span class="line"> * LRUCache obj &#x3D; new LRUCache(capacity);</span><br><span class="line"> * int param_1 &#x3D; obj.get(key);</span><br><span class="line"> * obj.put(key,value);</span><br><span class="line"> *&#x2F;</span><br></pre></td></tr></table></figure><p><img src="/2020/04/05/LRU%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/20200405105618555.png" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;【来源：力扣（LeetCode）&lt;br&gt;链接：&lt;a href=&quot;https://leetcode-cn.com/problems/lru-cache&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode-cn.com/problems/lru-cache&lt;/a&gt; 】&lt;br&gt;运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。&lt;/p&gt;
-&lt;p&gt;获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。&lt;br&gt;写入数据 put(key, value) - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。&lt;/p&gt;
-&lt;p&gt;进阶:&lt;br&gt;你是否可以在 O(1) 时间复杂度内完成这两种操作？&lt;/p&gt;
-&lt;p&gt;示例:&lt;br&gt;LRUCache cache = new LRUCache( 2 /* 缓存容量 */ );&lt;/p&gt;
-&lt;p&gt;cache.put(1, 1);&lt;br&gt;cache.put(2, 2);&lt;br&gt;cache.get(1);       // 返回  1&lt;br&gt;cache.put(3, 3);    // 该操作会使得密钥 2 作废&lt;br&gt;cache.get(2);       // 返回 -1 (未找到)&lt;br&gt;cache.put(4, 4);    // 该操作会使得密钥 1 作废&lt;br&gt;cache.get(1);       // 返回 -1 (未找到)&lt;br&gt;cache.get(3);       // 返回  3&lt;br&gt;cache.get(4);       // 返回  4&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="LeetCode" scheme="https://kawhiz.github.io/tags/LeetCode/"/>
     
   </entry>
   
